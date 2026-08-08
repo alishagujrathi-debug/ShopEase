@@ -1,0 +1,595 @@
+{% extends 'base.html' %}
+
+{% block title %}Join ShopEase{% endblock %}
+
+{% block content %}
+
+<style>
+
+.register-wrapper {
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 45px 20px;
+    background:
+        radial-gradient(circle at top left, rgba(230,57,70,0.08), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(17,24,39,0.08), transparent 35%),
+        #f8f8f8;
+}
+
+
+/* MAIN CARD */
+
+.register-box {
+    width: 100%;
+    max-width: 1050px;
+    min-height: 620px;
+
+    display: grid;
+    grid-template-columns: 43% 57%;
+
+    background: #ffffff;
+
+    border-radius: 28px;
+    overflow: hidden;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.12);
+}
+
+
+/* LEFT PREMIUM SECTION */
+
+.register-showcase {
+    position: relative;
+
+    padding: 55px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,24,39,0.98),
+            rgba(31,41,55,0.96)
+        );
+}
+
+
+/* Decorative circles */
+
+.register-showcase::before {
+    content: "";
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    top: -100px;
+    right: -100px;
+}
+
+.register-showcase::after {
+    content: "";
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.10);
+
+    bottom: -70px;
+    left: -70px;
+}
+
+
+/* BRAND */
+
+.brand {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.brand-icon {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+    color: #111827;
+
+    font-size: 19px;
+}
+
+
+/* SHOWCASE CONTENT */
+
+.showcase-content {
+    position: relative;
+    z-index: 2;
+}
+
+.showcase-content h1 {
+    font-size: 46px;
+    line-height: 1.08;
+
+    margin: 0 0 20px;
+
+    font-weight: 900;
+
+    letter-spacing: -1px;
+}
+
+.showcase-content h1 span {
+    color: #ff6673;
+}
+
+.showcase-content p {
+    max-width: 370px;
+
+    color: #d1d5db;
+
+    font-size: 15px;
+    line-height: 1.8;
+
+    margin: 0;
+}
+
+
+/* BENEFITS */
+
+.benefits {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+    gap: 13px;
+}
+
+.benefit {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: #e5e7eb;
+
+    font-size: 13px;
+}
+
+.benefit-icon {
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,0.1);
+
+    font-size: 11px;
+}
+
+
+/* RIGHT FORM */
+
+.register-form-area {
+    padding: 55px 65px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/* HEADER */
+
+.form-header {
+    margin-bottom: 30px;
+}
+
+.form-header h2 {
+    margin: 0 0 8px;
+
+    color: #111827;
+
+    font-size: 32px;
+    font-weight: 900;
+
+    letter-spacing: -0.5px;
+}
+
+.form-header p {
+    margin: 0;
+
+    color: #8a8a8a;
+
+    font-size: 14px;
+}
+
+
+/* ERRORS */
+
+.error-box {
+    margin-bottom: 20px;
+
+    padding: 13px 15px;
+
+    border-radius: 10px;
+
+    background: #fff1f2;
+
+    color: #be123c;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* DJANGO FORM */
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #374151;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.form-group input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 14px 16px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 11px;
+
+    background: #fafafa;
+
+    color: #111827;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.25s;
+}
+
+.form-group input:focus {
+    background: white;
+
+    border-color: #111827;
+
+    box-shadow:
+        0 0 0 4px rgba(17,24,39,0.06);
+}
+
+
+/* HELP TEXT */
+
+.form-group ul {
+    margin: 7px 0 0;
+    padding-left: 18px;
+
+    color: #999;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* BUTTON */
+
+.create-account-btn {
+    width: 100%;
+
+    margin-top: 8px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #111827;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.2px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.create-account-btn:hover {
+    background: #e63946;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(230,57,70,0.22);
+}
+
+
+/* LOGIN */
+
+.login-area {
+    margin-top: 23px;
+
+    text-align: center;
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+.login-area a {
+    color: #111827;
+
+    font-weight: 800;
+
+    text-decoration: none;
+}
+
+.login-area a:hover {
+    color: #e63946;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 850px) {
+
+    .register-box {
+        grid-template-columns: 1fr;
+    }
+
+    .register-showcase {
+        min-height: 350px;
+        padding: 40px;
+    }
+
+    .showcase-content h1 {
+        font-size: 36px;
+    }
+
+    .benefits {
+        display: none;
+    }
+
+    .register-form-area {
+        padding: 40px 30px;
+    }
+}
+
+</style>
+
+
+<div class="register-wrapper">
+
+    <div class="register-box">
+
+
+        <!-- LEFT -->
+
+        <div class="register-showcase">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    <i class="fas fa-bag-shopping"></i>
+                </div>
+
+                ShopEase
+
+            </div>
+
+
+            <div class="showcase-content">
+
+                <h1>
+                    Shop better.<br>
+                    Live <span>better.</span>
+                </h1>
+
+                <p>
+                    Create your ShopEase account and enjoy
+                    a seamless shopping experience designed
+                    around you.
+                </p>
+
+            </div>
+
+
+            <div class="benefits">
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+
+                    Save your favourite products
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        <i class="fas fa-cart-shopping"></i>
+                    </div>
+
+                    Manage your cart effortlessly
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+
+                    Secure and personalised shopping
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="register-form-area">
+
+
+            <div class="form-header">
+
+                <h2>
+                    Create your account
+                </h2>
+
+                <p>
+                    Enter your details to get started.
+                </p>
+
+            </div>
+
+
+            {% if form.errors %}
+
+                <div class="error-box">
+
+                    {% for field in form %}
+
+                        {% for error in field.errors %}
+
+                            <div>{{ error }}</div>
+
+                        {% endfor %}
+
+                    {% endfor %}
+
+
+                    {% for error in form.non_field_errors %}
+
+                        <div>{{ error }}</div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div class="error-box">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                {% for field in form %}
+
+                    <div class="form-group">
+
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% if field.help_text %}
+
+                            {{ field.help_text|safe }}
+
+                        {% endif %}
+
+                    </div>
+
+                {% endfor %}
+
+
+                <button
+                    type="submit"
+                    class="create-account-btn"
+                >
+
+                    Create Account
+                    <i class="fas fa-arrow-right"></i>
+
+                </button>
+
+            </form>
+
+
+            <div class="login-area">
+
+                Already have an account?
+
+                <a href="{% url 'login' %}">
+                    Sign in
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

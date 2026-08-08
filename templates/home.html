@@ -1,0 +1,1209 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ShopEase | Home{% endblock %}
+
+{% block content %}
+
+<style>
+
+.shopee-home {
+    background: #f7f8fc;
+    min-height: 100vh;
+    padding-bottom: 70px;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #111827, #374151, #e63946);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 850px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-small {
+    color: #ffd6dc;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    color: white;
+    font-size: 56px;
+    font-weight: 900;
+    margin: 0;
+}
+
+.hero h1 span {
+    color: #ffccd5;
+}
+
+.hero p {
+    color: #eeeeee;
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 650px;
+    margin: 22px auto 30px;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: white;
+    color: #111827;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 800;
+    transition: 0.3s;
+}
+
+.hero-btn:hover {
+    background: #e63946;
+    color: white;
+}
+
+
+/* FEATURES */
+
+.features {
+    max-width: 1150px;
+    margin: -35px auto 55px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 5;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.feature {
+    background: white;
+    border-radius: 18px;
+    padding: 22px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.feature-icon {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+
+    border-radius: 14px;
+
+    background: #fff0f3;
+    color: #e63946;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+.feature h4 {
+    margin: 0 0 5px;
+    color: #111827;
+}
+
+.feature p {
+    margin: 0;
+    color: #777;
+    font-size: 13px;
+}
+
+
+/* PRODUCTS */
+
+.products-section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title span {
+    color: #e63946;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.section-title h2 {
+    font-size: 36px;
+    color: #111827;
+    margin: 8px 0;
+    font-weight: 900;
+}
+
+.section-title p {
+    color: #777;
+}
+
+
+/* GRID */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+
+/* CARD */
+
+.product-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid #eeeeee;
+    position: relative;
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.13);
+}
+
+
+/* IMAGE */
+
+.product-image {
+    height: 240px;
+    background: #f5f6f8;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: 0.5s;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.06);
+}
+
+
+/* BADGE */
+
+.product-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 5;
+
+    background: #e63946;
+    color: white;
+
+    padding: 6px 12px;
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+/* HEART */
+
+.product-heart {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    color: #e63946;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+
+    transition: 0.3s;
+}
+
+.product-heart:hover {
+    background: #e63946;
+    color: white;
+    transform: scale(1.1);
+}
+
+
+/* INFO */
+
+.product-info {
+    padding: 20px;
+}
+
+.product-info h3 {
+    color: #111827;
+    font-size: 18px;
+    margin: 0 0 8px;
+    font-weight: 800;
+}
+
+.product-description {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 40px;
+}
+
+.product-price {
+    color: #e63946;
+    font-size: 22px;
+    font-weight: 900;
+    margin: 14px 0;
+}
+
+
+/* BUTTONS */
+
+.product-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.product-buttons a {
+    flex: 1;
+    text-decoration: none;
+}
+
+.product-buttons button {
+    width: 100%;
+    padding: 11px 7px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 800;
+    transition: 0.3s;
+}
+
+.view-button {
+    background: #111827;
+    color: white;
+    border: 2px solid #111827;
+}
+
+.view-button:hover {
+    background: #e63946;
+    border-color: #e63946;
+}
+
+.cart-button {
+    background: #fff0f3;
+    color: #e63946;
+    border: 2px solid #e63946;
+}
+
+.cart-button:hover {
+    background: #e63946;
+    color: white;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hero h1 {
+        font-size: 46px;
+    }
+}
+
+@media (max-width: 750px) {
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .section-title h2 {
+        font-size: 28px;
+    }
+}
+
+</style>
+
+
+<div class="shopee-home">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                Welcome to ShopEase
+            </div>
+
+            <h1>
+                Shop Smart.
+                <span>Live Better.</span>
+            </h1>
+
+            <p>
+                Discover premium products, stylish essentials
+                and amazing deals — all in one place.
+            </p>
+
+            <a href="#products" class="hero-btn">
+                <i class="fas fa-shopping-bag"></i>
+                Explore Products
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section class="features">
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                <i class="fas fa-truck"></i>
+            </div>
+
+            <div>
+                <h4>Fast Delivery</h4>
+                <p>Quick and reliable delivery</p>
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                <i class="fas fa-shield-halved"></i>
+            </div>
+
+            <div>
+                <h4>Secure Shopping</h4>
+                <p>Safe and trusted experience</p>
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                <i class="fas fa-tags"></i>
+            </div>
+
+            <div>
+                <h4>Best Deals</h4>
+                <p>Great products at great prices</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+
+    <section class="products-section" id="products">
+
+        <div class="section-title">
+
+            <span>Our Collection</span>
+
+            <h2>Featured Products</h2>
+
+            <p>
+                Explore our latest and most popular products
+            </p>
+
+        </div>
+
+
+        <div class="product-grid">
+
+
+            <!-- PRODUCT 1 -->
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <div class="product-badge">
+                        NEW
+                    </div>
+
+                    <a
+                        href="/wishlist/add/1/"
+                        class="product-heart"
+                        title="Add to Wishlist"
+                    >
+                        <i class="fas fa-heart"></i>
+                    </a>
+
+                    <img
+                        src="{% static 'images/iphone.jpg' %}"
+                        alt="iPhone 16 Pro"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>iPhone 16 Pro</h3>
+
+                    <p class="product-description">
+                        Latest Apple flagship smartphone.
+                    </p>
+
+                    <div class="product-price">
+                        ₹1,29,999
+                    </div>
+
+                    <div class="product-buttons">
+
+                        <a href="/product/1/">
+                            <button class="view-button">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                        </a>
+
+                        <a href="/cart/add/1/">
+                            <button class="cart-button">
+                                <i class="fas fa-cart-plus"></i>
+                                Cart
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 2 -->
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <div class="product-badge">
+                        POPULAR
+                    </div>
+
+                    <a
+                        href="/wishlist/add/2/"
+                        class="product-heart"
+                    >
+                        <i class="fas fa-heart"></i>
+                    </a>
+
+                    <img
+                        src="{% static 'images/headphones.jpg' %}"
+                        alt="Sony Headphones"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Sony Headphones</h3>
+
+                    <p class="product-description">
+                        Premium noise cancelling headphones.
+                    </p>
+
+                    <div class="product-price">
+                        ₹5,999
+                    </div>
+
+                    <div class="product-buttons">
+
+                        <a href="/product/2/">
+                            <button class="view-button">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                        </a>
+
+                        <a href="/cart/add/2/">
+                            <button class="cart-button">
+                                <i class="fas fa-cart-plus"></i>
+                                Cart
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 3 -->
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <div class="product-badge">
+                        TRENDING
+                    </div>
+
+                    <a
+                        href="/wishlist/add/3/"
+                        class="product-heart"
+                    >
+                        <i class="fas fa-heart"></i>
+                    </a>
+
+                    <img
+                        src="{% static 'images/nike-shoes.jpg' %}"
+                        alt="Nike Air Max"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Nike Air Max</h3>
+
+                    <p class="product-description">
+                        Comfortable and stylish running shoes.
+                    </p>
+
+                    <div class="product-price">
+                        ₹3,999
+                    </div>
+
+                    <div class="product-buttons">
+
+                        <a href="/product/3/">
+                            <button class="view-button">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                        </a>
+
+                        <a href="/cart/add/3/">
+                            <button class="cart-button">
+                                <i class="fas fa-cart-plus"></i>
+                                Cart
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 4 -->
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <div class="product-badge">
+                        SALE
+                    </div>
+
+                    <a
+                        href="/wishlist/add/4/"
+                        class="product-heart"
+                    >
+                        <i class="fas fa-heart"></i>
+                    </a>
+
+                    <img
+                        src="{% static 'images/smart-watch.jpg' %}"
+                        alt="Smart Watch"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Smart Watch</h3>
+
+                    <p class="product-description">
+                        Track fitness and notifications.
+                    </p>
+
+                    <div class="product-price">
+                        ₹2,499
+                    </div>
+
+                    <div class="product-buttons">
+
+                        <a href="/product/4/">
+                            <button class="view-button">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                        </a>
+
+                        <a href="/cart/add/4/">
+                            <button class="cart-button">
+                                <i class="fas fa-cart-plus"></i>
+                                Cart
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 5 -->
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <div class="product-badge">
+                        PREMIUM
+                    </div>
+
+                    <a
+                        href="/wishlist/add/5/"
+                        class="product-heart"
+                    >
+                        <i class="fas fa-heart"></i>
+                    </a>
+
+                    <img
+                        src="{% static 'images/laptop.jpg' %}"
+                        alt="Laptop"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Premium Laptop</h3>
+
+                    <p class="product-description">
+                        High performance laptop for work and study.
+                    </p>
+
+                    <div class="product-price">
+                        ₹65,999
+                    </div>
+
+                    <div class="product-buttons">
+
+                        <a href="/product/5/">
+                            <button class="view-button">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                        </a>
+
+                        <a href="/cart/add/5/">
+                            <button class="cart-button">
+                                <i class="fas fa-cart-plus"></i>
+                                Cart
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 6 -->
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <div class="product-badge">
+                        GAMING
+                    </div>
+
+                    <a
+                        href="/wishlist/add/6/"
+                        class="product-heart"
+                    >
+                        <i class="fas fa-heart"></i>
+                    </a>
+
+                    <img
+                        src="{% static 'images/gaming-mouse.jpg' %}"
+                        alt="Gaming Mouse"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Gaming Mouse</h3>
+
+                    <p class="product-description">
+                        Precision RGB gaming mouse.
+                    </p>
+
+                    <div class="product-price">
+                        ₹1,499
+                    </div>
+
+                    <div class="product-buttons">
+
+                        <a href="/product/6/">
+                            <button class="view-button">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                        </a>
+
+                        <a href="/cart/add/6/">
+                            <button class="cart-button">
+                                <i class="fas fa-cart-plus"></i>
+                                Cart
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 7 -->
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <div class="product-badge">
+                        NEW
+                    </div>
+
+                    <a
+                        href="/wishlist/add/7/"
+                        class="product-heart"
+                    >
+                        <i class="fas fa-heart"></i>
+                    </a>
+
+                    <img
+                        src="{% static 'images/samsung.jpg' %}"
+                        alt="Samsung Galaxy"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Samsung Galaxy S25</h3>
+
+                    <p class="product-description">
+                        Powerful smartphone with premium design.
+                    </p>
+
+                    <div class="product-price">
+                        ₹79,999
+                    </div>
+
+                    <div class="product-buttons">
+
+                        <a href="/product/7/">
+                            <button class="view-button">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                        </a>
+
+                        <a href="/cart/add/7/">
+                            <button class="cart-button">
+                                <i class="fas fa-cart-plus"></i>
+                                Cart
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 8 -->
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <div class="product-badge">
+                        PRO
+                    </div>
+
+                    <a
+                        href="/wishlist/add/8/"
+                        class="product-heart"
+                    >
+                        <i class="fas fa-heart"></i>
+                    </a>
+
+                    <img
+                        src="{% static 'images/camera.jpg' %}"
+                        alt="Camera"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Canon Camera</h3>
+
+                    <p class="product-description">
+                        Professional camera for stunning photography.
+                    </p>
+
+                    <div class="product-price">
+                        ₹54,999
+                    </div>
+
+                    <div class="product-buttons">
+
+                        <a href="/product/8/">
+                            <button class="view-button">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                        </a>
+
+                        <a href="/cart/add/8/">
+                            <button class="cart-button">
+                                <i class="fas fa-cart-plus"></i>
+                                Cart
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 9 -->
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <div class="product-badge">
+                        STYLE
+                    </div>
+
+                    <a
+                        href="/wishlist/add/9/"
+                        class="product-heart"
+                    >
+                        <i class="fas fa-heart"></i>
+                    </a>
+
+                    <img
+                        src="{% static 'images/backpack.jpg' %}"
+                        alt="Backpack"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Leather Backpack</h3>
+
+                    <p class="product-description">
+                        Stylish and durable everyday backpack.
+                    </p>
+
+                    <div class="product-price">
+                        ₹2,999
+                    </div>
+
+                    <div class="product-buttons">
+
+                        <a href="/product/9/">
+                            <button class="view-button">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                        </a>
+
+                        <a href="/cart/add/9/">
+                            <button class="cart-button">
+                                <i class="fas fa-cart-plus"></i>
+                                Cart
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 10 -->
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <div class="product-badge">
+                        TRENDING
+                    </div>
+
+                    <a
+                        href="/wishlist/add/10/"
+                        class="product-heart"
+                    >
+                        <i class="fas fa-heart"></i>
+                    </a>
+
+                    <img
+                        src="{% static 'images/sunglasses.jpg' %}"
+                        alt="Sunglasses"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Premium Sunglasses</h3>
+
+                    <p class="product-description">
+                        Stylish sunglasses with premium finish.
+                    </p>
+
+                    <div class="product-price">
+                        ₹1,999
+                    </div>
+
+                    <div class="product-buttons">
+
+                        <a href="/product/10/">
+                            <button class="view-button">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                        </a>
+
+                        <a href="/cart/add/10/">
+                            <button class="cart-button">
+                                <i class="fas fa-cart-plus"></i>
+                                Cart
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 11 -->
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <div class="product-badge">
+                        GAMING
+                    </div>
+
+                    <a
+                        href="/wishlist/add/11/"
+                        class="product-heart"
+                    >
+                        <i class="fas fa-heart"></i>
+                    </a>
+
+                    <img
+                        src="{% static 'images/keyboard.jpg' %}"
+                        alt="Mechanical Keyboard"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Mechanical Keyboard</h3>
+
+                    <p class="product-description">
+                        Premium mechanical keyboard for gaming.
+                    </p>
+
+                    <div class="product-price">
+                        ₹3,499
+                    </div>
+
+                    <div class="product-buttons">
+
+                        <a href="/product/11/">
+                            <button class="view-button">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                        </a>
+
+                        <a href="/cart/add/11/">
+                            <button class="cart-button">
+                                <i class="fas fa-cart-plus"></i>
+                                Cart
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 12 -->
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <div class="product-badge">
+                        PREMIUM
+                    </div>
+
+                    <a
+                        href="/wishlist/add/12/"
+                        class="product-heart"
+                    >
+                        <i class="fas fa-heart"></i>
+                    </a>
+
+                    <img
+                        src="{% static 'images/perfume.jpg' %}"
+                        alt="Premium Perfume"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Premium Perfume</h3>
+
+                    <p class="product-description">
+                        Elegant fragrance for a premium experience.
+                    </p>
+
+                    <div class="product-price">
+                        ₹2,499
+                    </div>
+
+                    <div class="product-buttons">
+
+                        <a href="/product/12/">
+                            <button class="view-button">
+                                <i class="fas fa-eye"></i>
+                                View
+                            </button>
+                        </a>
+
+                        <a href="/cart/add/12/">
+                            <button class="cart-button">
+                                <i class="fas fa-cart-plus"></i>
+                                Cart
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

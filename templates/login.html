@@ -1,0 +1,649 @@
+{% extends 'base.html' %}
+
+{% block title %}Login | ShopEase{% endblock %}
+
+{% block content %}
+
+<style>
+
+.login-wrapper {
+    min-height: 88vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 45px 20px;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(230,57,70,0.09),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom left,
+            rgba(17,24,39,0.08),
+            transparent 35%
+        ),
+        #f8f8f8;
+}
+
+
+/* MAIN CARD */
+
+.login-box {
+    width: 100%;
+    max-width: 1050px;
+    min-height: 570px;
+
+    display: grid;
+    grid-template-columns: 43% 57%;
+
+    background: #ffffff;
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.12);
+}
+
+
+/* LEFT SIDE */
+
+.login-showcase {
+    position: relative;
+
+    padding: 55px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111827,
+            #1f2937
+        );
+}
+
+
+/* Decorative circles */
+
+.login-showcase::before {
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    top: -100px;
+    right: -100px;
+}
+
+
+.login-showcase::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.10);
+
+    bottom: -70px;
+    left: -70px;
+}
+
+
+/* BRAND */
+
+.login-brand {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 22px;
+
+    font-weight: 900;
+}
+
+
+.login-brand-icon {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+
+    color: #111827;
+
+    font-size: 19px;
+}
+
+
+/* SHOWCASE CONTENT */
+
+.login-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+.login-content h1 {
+    margin: 0 0 20px;
+
+    font-size: 46px;
+
+    line-height: 1.08;
+
+    font-weight: 900;
+
+    letter-spacing: -1px;
+}
+
+
+.login-content h1 span {
+    color: #ff6673;
+}
+
+
+.login-content p {
+    max-width: 370px;
+
+    margin: 0;
+
+    color: #d1d5db;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* FEATURES */
+
+.login-features {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+
+    gap: 13px;
+}
+
+
+.login-feature {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: #e5e7eb;
+
+    font-size: 13px;
+}
+
+
+.feature-icon {
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255,255,255,0.1);
+
+    font-size: 11px;
+}
+
+
+/* RIGHT SIDE */
+
+.login-form-area {
+    padding: 55px 65px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+/* HEADER */
+
+.login-header {
+    margin-bottom: 30px;
+}
+
+
+.login-header h2 {
+    margin: 0 0 8px;
+
+    color: #111827;
+
+    font-size: 32px;
+
+    font-weight: 900;
+
+    letter-spacing: -0.5px;
+}
+
+
+.login-header p {
+    margin: 0;
+
+    color: #8a8a8a;
+
+    font-size: 14px;
+}
+
+
+/* ERROR */
+
+.login-error {
+    margin-bottom: 20px;
+
+    padding: 13px 15px;
+
+    border-radius: 10px;
+
+    background: #fff1f2;
+
+    color: #be123c;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* FORM */
+
+.form-group {
+    margin-bottom: 19px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #374151;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.form-group input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 14px 16px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 11px;
+
+    background: #fafafa;
+
+    color: #111827;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: 0.25s;
+}
+
+
+.form-group input:focus {
+    background: white;
+
+    border-color: #111827;
+
+    box-shadow:
+        0 0 0 4px rgba(17,24,39,0.06);
+}
+
+
+/* LOGIN BUTTON */
+
+.login-btn {
+    width: 100%;
+
+    margin-top: 5px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #111827;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.login-btn:hover {
+    background: #e63946;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(230,57,70,0.22);
+}
+
+
+/* REGISTER */
+
+.register-area {
+    margin-top: 23px;
+
+    text-align: center;
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+
+.register-area a {
+    color: #111827;
+
+    font-weight: 800;
+
+    text-decoration: none;
+}
+
+
+.register-area a:hover {
+    color: #e63946;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 850px) {
+
+    .login-box {
+        grid-template-columns: 1fr;
+    }
+
+    .login-showcase {
+        min-height: 350px;
+
+        padding: 40px;
+    }
+
+    .login-content h1 {
+        font-size: 36px;
+    }
+
+    .login-features {
+        display: none;
+    }
+
+    .login-form-area {
+        padding: 40px 30px;
+    }
+
+}
+
+</style>
+
+
+<div class="login-wrapper">
+
+    <div class="login-box">
+
+
+        <!-- LEFT SHOWCASE -->
+
+        <div class="login-showcase">
+
+
+            <div class="login-brand">
+
+                <div class="login-brand-icon">
+
+                    <i class="fas fa-bag-shopping"></i>
+
+                </div>
+
+                ShopEase
+
+            </div>
+
+
+            <div class="login-content">
+
+                <h1>
+
+                    Welcome<br>
+
+                    <span>back.</span>
+
+                </h1>
+
+
+                <p>
+
+                    Your favourite products are waiting for you.
+                    Sign in to continue your personalised
+                    ShopEase experience.
+
+                </p>
+
+            </div>
+
+
+            <div class="login-features">
+
+
+                <div class="login-feature">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-heart"></i>
+
+                    </div>
+
+                    Your wishlist is waiting
+
+                </div>
+
+
+                <div class="login-feature">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-cart-shopping"></i>
+
+                    </div>
+
+                    Continue your shopping
+
+                </div>
+
+
+                <div class="login-feature">
+
+                    <div class="feature-icon">
+
+                        <i class="fas fa-shield-halved"></i>
+
+                    </div>
+
+                    Secure account access
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- LOGIN FORM -->
+
+        <div class="login-form-area">
+
+
+            <div class="login-header">
+
+                <h2>
+
+                    Sign in
+
+                </h2>
+
+
+                <p>
+
+                    Enter your details to access your account.
+
+                </p>
+
+            </div>
+
+
+            {% if form.errors %}
+
+                <div class="login-error">
+
+                    {% for field in form %}
+
+                        {% for error in field.errors %}
+
+                            <div>{{ error }}</div>
+
+                        {% endfor %}
+
+                    {% endfor %}
+
+
+                    {% for error in form.non_field_errors %}
+
+                        <div>{{ error }}</div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div class="login-error">
+
+                        {{ message }}
+
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                {% for field in form %}
+
+                    <div class="form-group">
+
+                        <label for="{{ field.id_for_label }}">
+
+                            {{ field.label }}
+
+                        </label>
+
+
+                        {{ field }}
+
+                    </div>
+
+                {% endfor %}
+
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
+
+                    Sign In
+
+                    <i class="fas fa-arrow-right"></i>
+
+                </button>
+
+            </form>
+
+
+            <div class="register-area">
+
+                Don't have an account?
+
+                <a href="{% url 'register' %}">
+
+                    Create one
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

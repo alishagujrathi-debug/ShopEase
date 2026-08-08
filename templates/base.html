@@ -1,0 +1,351 @@
+{% load static %}
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+    {% block title %}
+    ShopEase
+    {% endblock %}
+</title>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+    }
+
+    /* Navbar */
+    nav.navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 25px;
+
+        padding: 14px 40px;
+
+        background: #111827;
+        color: white;
+
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    /* Logo */
+    .logo a {
+        color: white;
+        font-size: 27px;
+        font-weight: bold;
+        text-decoration: none;
+        letter-spacing: 0.5px;
+    }
+
+    .logo a i {
+        color: #ff4d6d;
+        margin-right: 7px;
+    }
+
+    .logo a span {
+        color: #ff4d6d;
+    }
+
+    /* Search */
+    .search-box {
+        flex: 1;
+        max-width: 500px;
+    }
+
+    .search-box form {
+        display: flex;
+        background: white;
+        border-radius: 25px;
+        overflow: hidden;
+    }
+
+    .search-box input {
+        flex: 1;
+        padding: 11px 18px;
+
+        border: none;
+        outline: none;
+
+        font-size: 14px;
+    }
+
+    .search-box button {
+        width: 50px;
+
+        border: none;
+        background: #ff4d6d;
+        color: white;
+
+        cursor: pointer;
+        font-size: 16px;
+
+        transition: 0.3s;
+    }
+
+    .search-box button:hover {
+        background: #e6395c;
+    }
+
+    /* Navigation */
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .nav-links a {
+        position: relative;
+
+        color: white;
+        text-decoration: none;
+
+        padding: 9px 11px;
+
+        border-radius: 7px;
+
+        font-size: 14px;
+
+        transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+        background: #374151;
+        color: #ff6b85;
+    }
+
+    .nav-links a i {
+        margin-right: 5px;
+    }
+
+    /* Badge */
+    .badge {
+        position: absolute;
+
+        top: 1px;
+        right: 0;
+
+        min-width: 18px;
+        height: 18px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #ff4d6d;
+        color: white;
+
+        border-radius: 50%;
+
+        font-size: 10px;
+        font-weight: bold;
+
+        border: 2px solid #111827;
+    }
+
+    /* User */
+    .user-greeting {
+        margin: 0 8px;
+
+        color: #eeeeee;
+
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .user-greeting strong {
+        color: #ff6b85;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+
+        padding: 20px;
+
+        background: #111827;
+        color: white;
+
+        margin-top: 30px;
+    }
+
+    footer span {
+        color: #ff4d6d;
+        font-weight: bold;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+
+        nav.navbar {
+            flex-wrap: wrap;
+            padding: 15px 20px;
+        }
+
+        .search-box {
+            order: 3;
+            width: 100%;
+            max-width: none;
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        nav.navbar {
+            padding: 12px 15px;
+        }
+
+        .logo a {
+            font-size: 22px;
+        }
+
+        .nav-links a {
+            padding: 8px;
+            font-size: 0;
+        }
+
+        .nav-links a i {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .user-greeting {
+            display: none;
+        }
+    }
+</style>
+
+
+<!-- Navbar -->
+
+<nav class="navbar">
+
+    <!-- Logo -->
+    <div class="logo">
+        <a href="/">
+            <i class="fas fa-bag-shopping"></i>
+            Shop<span>Ease</span>
+        </a>
+    </div>
+
+
+    <!-- Search -->
+    <div class="search-box">
+
+        <form method="GET" action="/">
+
+            <input
+                type="text"
+                name="q"
+                placeholder="Search products..."
+                value="{{ request.GET.q|default:'' }}"
+            >
+
+            <button type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- Navigation Links -->
+
+    <div class="nav-links">
+
+        <!-- Wishlist -->
+        <a href="/wishlist/" title="Wishlist">
+
+            <i class="fas fa-heart"></i>
+            Wishlist
+
+            <span class="badge" id="wishlist-count">
+                0
+            </span>
+
+        </a>
+
+
+        <!-- Cart -->
+        <a href="/cart/" title="Cart">
+
+            <i class="fas fa-shopping-cart"></i>
+            Cart
+
+            <span class="badge" id="cart-count">
+                0
+            </span>
+
+        </a>
+
+
+        {% if user.is_authenticated %}
+
+            <!-- User -->
+            <span class="user-greeting">
+
+                Hello,
+                <strong>{{ user.username }}</strong> 👋
+
+            </span>
+
+
+            <!-- Logout -->
+            <a href="/logout/" title="Logout">
+
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+
+            </a>
+
+        {% else %}
+
+            <!-- Login -->
+            <a href="/login/" title="Login">
+
+                <i class="fas fa-user"></i>
+                Login
+
+            </a>
+
+
+            <!-- Register -->
+            <a href="/register/" title="Register">
+
+                <i class="fas fa-user-plus"></i>
+                Register
+
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</nav>
+
+
+{% block content %}
+{% endblock %}
+
+
+<!-- Footer -->
+
+<footer>
+    © 2026 <span>ShopEase</span> — Shop Smart. Shop Easy. 🛍️
+</footer>
