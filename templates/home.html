@@ -6,59 +6,91 @@
 {% block content %}
 
 <style>
-
-.shopee-home {
-    background: #f7f8fc;
-    min-height: 100vh;
-    padding-bottom: 70px;
-}
-
-/* HERO */
+/* ================================
+   HERO SECTION
+================================ */
 
 .hero {
-    min-height: 450px;
+    min-height: 520px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 60px 20px;
-    background: linear-gradient(135deg, #111827, #374151, #e63946);
     position: relative;
     overflow: hidden;
+    background:
+        linear-gradient(135deg, rgba(20,20,35,0.96), rgba(65,35,90,0.92)),
+        url("{% static 'images/hero-bg.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    top: -180px;
+    left: -120px;
+    animation: floatCircle 7s ease-in-out infinite;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    bottom: -150px;
+    right: -100px;
+    animation: floatCircle 8s ease-in-out infinite reverse;
 }
 
 .hero-content {
-    max-width: 850px;
     position: relative;
     z-index: 2;
+    max-width: 800px;
+    padding: 40px 20px;
+    animation: fadeUp 1s ease;
 }
 
 .hero-small {
-    color: #ffd6dc;
+    display: inline-block;
+    padding: 9px 20px;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
     font-size: 14px;
-    font-weight: 800;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-bottom: 18px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    animation: pulse 2.5s infinite;
 }
 
 .hero h1 {
-    color: white;
-    font-size: 56px;
-    font-weight: 900;
-    margin: 0;
+    font-size: 58px;
+    line-height: 1.1;
+    margin: 10px 0 20px;
+    font-weight: 800;
 }
 
 .hero h1 span {
-    color: #ffccd5;
+    display: block;
+    background: linear-gradient(90deg, #ff9a9e, #fad0c4, #fbc2eb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero p {
-    color: #eeeeee;
     font-size: 18px;
     line-height: 1.7;
+    opacity: 0.9;
     max-width: 650px;
-    margin: 22px auto 30px;
+    margin: 0 auto 30px;
 }
 
 .hero-btn {
@@ -66,241 +98,233 @@
     align-items: center;
     gap: 10px;
     padding: 14px 28px;
-    background: white;
-    color: #111827;
-    border-radius: 12px;
+    border-radius: 35px;
     text-decoration: none;
-    font-weight: 800;
-    transition: 0.3s;
+    color: white;
+    font-weight: 600;
+    background: linear-gradient(135deg, #ff6b81, #9b59b6);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
 }
 
 .hero-btn:hover {
-    background: #e63946;
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
     color: white;
 }
 
 
-/* FEATURES */
+/* ================================
+   FEATURES
+================================ */
 
 .features {
-    max-width: 1150px;
-    margin: -35px auto 55px;
-    padding: 0 20px;
-    position: relative;
-    z-index: 5;
-
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 25px;
+    padding: 45px 7%;
+    background: #ffffff;
 }
 
 .feature {
-    background: white;
-    border-radius: 18px;
-    padding: 22px;
-
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 18px;
+    padding: 22px;
+    border-radius: 18px;
+    background: #fafafa;
+    border: 1px solid #eeeeee;
+    transition: all 0.3s ease;
+}
 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+.feature:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
 }
 
 .feature-icon {
-    width: 52px;
-    height: 52px;
-    min-width: 52px;
-
-    border-radius: 14px;
-
-    background: #fff0f3;
-    color: #e63946;
-
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
     display: flex;
     align-items: center;
     justify-content: center;
-
+    border-radius: 15px;
+    color: white;
     font-size: 21px;
+    background: linear-gradient(135deg, #ff6b81, #9b59b6);
 }
 
 .feature h4 {
     margin: 0 0 5px;
-    color: #111827;
+    font-size: 17px;
 }
 
 .feature p {
     margin: 0;
     color: #777;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 
-/* PRODUCTS */
+/* ================================
+   PRODUCTS SECTION
+================================ */
 
 .products-section {
-    max-width: 1200px;
-    margin: auto;
-    padding: 0 20px;
+    padding: 70px 7%;
+    background: linear-gradient(180deg, #fafafa, #ffffff);
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 45px;
 }
 
 .section-title span {
-    color: #e63946;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 3px;
+    color: #9b59b6;
+    font-size: 14px;
+    font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .section-title h2 {
-    font-size: 36px;
-    color: #111827;
-    margin: 8px 0;
-    font-weight: 900;
+    font-size: 38px;
+    margin: 10px 0;
+    color: #222;
 }
 
 .section-title p {
     color: #777;
+    margin: 0;
 }
 
 
-/* GRID */
+/* ================================
+   PRODUCT GRID
+================================ */
 
 .product-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    gap: 28px;
 }
-
-
-/* CARD */
 
 .product-card {
     background: white;
-    border-radius: 18px;
+    border-radius: 20px;
     overflow: hidden;
     border: 1px solid #eeeeee;
-    position: relative;
-    transition: 0.3s;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    transition: all 0.35s ease;
+    animation: fadeUp 0.8s ease;
 }
 
 .product-card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.13);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.12);
 }
 
 
-/* IMAGE */
+/* ================================
+   PRODUCT IMAGE
+================================ */
 
 .product-image {
-    height: 240px;
-    background: #f5f6f8;
+    height: 245px;
     position: relative;
     overflow: hidden;
+    background: #f5f5f5;
 }
 
 .product-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-    transition: 0.5s;
+    transition: transform 0.5s ease;
 }
 
 .product-card:hover .product-image img {
-    transform: scale(1.06);
+    transform: scale(1.08);
 }
-
-
-/* BADGE */
 
 .product-badge {
     position: absolute;
     top: 14px;
     left: 14px;
-    z-index: 5;
-
-    background: #e63946;
-    color: white;
-
-    padding: 6px 12px;
+    z-index: 2;
+    padding: 7px 12px;
     border-radius: 20px;
-
-    font-size: 11px;
-    font-weight: 800;
+    background: linear-gradient(135deg, #ff6b81, #9b59b6);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
-
-
-/* HEART */
 
 .product-heart {
     position: absolute;
-    top: 12px;
-    right: 12px;
-    z-index: 10;
-
+    top: 14px;
+    right: 14px;
+    z-index: 3;
     width: 40px;
     height: 40px;
-
-    border-radius: 50%;
-    background: white;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
+    border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    color: #ff5c75;
     text-decoration: none;
-    color: #e63946;
-
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-
-    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+    transition: all 0.3s ease;
 }
 
 .product-heart:hover {
-    background: #e63946;
+    transform: scale(1.12);
+    background: #ff5c75;
     color: white;
-    transform: scale(1.1);
 }
 
 
-/* INFO */
+/* ================================
+   PRODUCT INFO
+================================ */
 
 .product-info {
     padding: 20px;
 }
 
 .product-info h3 {
-    color: #111827;
-    font-size: 18px;
     margin: 0 0 8px;
-    font-weight: 800;
+    font-size: 19px;
+    color: #222;
 }
 
 .product-description {
+    min-height: 42px;
+    margin: 0 0 12px;
     color: #777;
     font-size: 13px;
-    line-height: 1.5;
-    min-height: 40px;
+    line-height: 1.6;
 }
 
 .product-price {
-    color: #e63946;
-    font-size: 22px;
-    font-weight: 900;
-    margin: 14px 0;
+    font-size: 21px;
+    font-weight: 800;
+    color: #9b59b6;
+    margin-bottom: 18px;
 }
 
 
-/* BUTTONS */
+/* ================================
+   BUTTONS
+================================ */
 
 .product-buttons {
     display: flex;
-    gap: 8px;
+    gap: 10px;
 }
 
 .product-buttons a {
@@ -308,75 +332,116 @@
     text-decoration: none;
 }
 
-.product-buttons button {
+.view-button,
+.cart-button {
     width: 100%;
-    padding: 11px 7px;
-    border-radius: 9px;
+    padding: 11px 8px;
+    border-radius: 10px;
+    border: none;
     cursor: pointer;
-    font-size: 12px;
-    font-weight: 800;
-    transition: 0.3s;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.3s ease;
 }
 
 .view-button {
-    background: #111827;
-    color: white;
-    border: 2px solid #111827;
+    background: #f2f2f2;
+    color: #333;
 }
 
 .view-button:hover {
-    background: #e63946;
-    border-color: #e63946;
+    background: #222;
+    color: white;
+    transform: translateY(-2px);
 }
 
 .cart-button {
-    background: #fff0f3;
-    color: #e63946;
-    border: 2px solid #e63946;
-}
-
-.cart-button:hover {
-    background: #e63946;
+    background: linear-gradient(135deg, #ff6b81, #9b59b6);
     color: white;
 }
 
+.cart-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(155,89,182,0.3);
+}
 
-/* RESPONSIVE */
 
-@media (max-width: 1000px) {
+/* ================================
+   ANIMATIONS
+================================ */
 
-    .product-grid {
-        grid-template-columns: repeat(3, 1fr);
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
 
-    .hero h1 {
-        font-size: 46px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-@media (max-width: 750px) {
+@keyframes floatCircle {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+    }
+
+    50% {
+        transform: translateY(30px) translateX(20px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.04);
+    }
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1100px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 850px) {
+    .features {
+        grid-template-columns: 1fr;
+    }
 
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .features {
-        grid-template-columns: 1fr;
-    }
-
     .hero h1 {
-        font-size: 38px;
+        font-size: 45px;
     }
 }
 
-@media (max-width: 500px) {
-
+@media (max-width: 550px) {
     .product-grid {
         grid-template-columns: 1fr;
     }
 
+    .products-section {
+        padding: 50px 5%;
+    }
+
+    .hero {
+        min-height: 450px;
+    }
+
     .hero h1 {
-        font-size: 32px;
+        font-size: 38px;
     }
 
     .hero p {
@@ -384,826 +449,253 @@
     }
 
     .section-title h2 {
-        font-size: 28px;
+        font-size: 30px;
     }
 }
-
 </style>
 
 
-<div class="shopee-home">
+<!-- ================================
+     HERO
+================================ -->
 
-    <!-- HERO -->
+<section class="hero">
 
-    <section class="hero">
+    <div class="hero-content">
 
-        <div class="hero-content">
-
-            <div class="hero-small">
-                Welcome to ShopEase
-            </div>
-
-            <h1>
-                Shop Smart.
-                <span>Live Better.</span>
-            </h1>
-
-            <p>
-                Discover premium products, stylish essentials
-                and amazing deals — all in one place.
-            </p>
-
-            <a href="#products" class="hero-btn">
-                <i class="fas fa-shopping-bag"></i>
-                Explore Products
-            </a>
-
+        <div class="hero-small">
+            ✨ Welcome to ShopEase
         </div>
 
-    </section>
+        <h1>
+            Shop Smart.
+            <span>Live Better.</span>
+        </h1>
+
+        <p>
+            Discover premium products, stylish essentials
+            and amazing deals — all in one place.
+        </p>
+
+        <a href="#products" class="hero-btn">
+            <i class="fas fa-shopping-bag"></i>
+            Explore Products
+        </a>
+
+    </div>
+
+</section>
 
 
-    <!-- FEATURES -->
+<!-- ================================
+     FEATURES
+================================ -->
 
-    <section class="features">
+<section class="features">
 
-        <div class="feature">
+    <div class="feature">
 
-            <div class="feature-icon">
-                <i class="fas fa-truck"></i>
-            </div>
-
-            <div>
-                <h4>Fast Delivery</h4>
-                <p>Quick and reliable delivery</p>
-            </div>
-
+        <div class="feature-icon">
+            <i class="fas fa-truck"></i>
         </div>
 
-
-        <div class="feature">
-
-            <div class="feature-icon">
-                <i class="fas fa-shield-halved"></i>
-            </div>
-
-            <div>
-                <h4>Secure Shopping</h4>
-                <p>Safe and trusted experience</p>
-            </div>
-
+        <div>
+            <h4>Fast Delivery</h4>
+            <p>Quick and reliable delivery</p>
         </div>
 
+    </div>
 
-        <div class="feature">
 
-            <div class="feature-icon">
-                <i class="fas fa-tags"></i>
-            </div>
+    <div class="feature">
 
-            <div>
-                <h4>Best Deals</h4>
-                <p>Great products at great prices</p>
-            </div>
-
+        <div class="feature-icon">
+            <i class="fas fa-shield-halved"></i>
         </div>
 
-    </section>
-
-
-    <!-- PRODUCTS -->
-
-    <section class="products-section" id="products">
-
-        <div class="section-title">
-
-            <span>Our Collection</span>
-
-            <h2>Featured Products</h2>
-
-            <p>
-                Explore our latest and most popular products
-            </p>
-
+        <div>
+            <h4>Secure Shopping</h4>
+            <p>Safe and trusted experience</p>
         </div>
 
+    </div>
 
-        <div class="product-grid">
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            <i class="fas fa-tags"></i>
+        </div>
+
+        <div>
+            <h4>Best Deals</h4>
+            <p>Great products at great prices</p>
+        </div>
+
+    </div>
+
+</section>
 
 
-            <!-- PRODUCT 1 -->
+<!-- ================================
+     PRODUCTS
+================================ -->
 
-            <div class="product-card">
+<section class="products-section" id="products">
 
-                <div class="product-image">
+    <div class="section-title">
 
-                    <div class="product-badge">
+        <span>Our Collection</span>
+
+        <h2>Featured Products</h2>
+
+        <p>
+            Explore our latest and most popular products
+        </p>
+
+    </div>
+
+
+    <div class="product-grid">
+
+        {% for product in products %}
+
+        <div class="product-card">
+
+            <div class="product-image">
+
+                <div class="product-badge">
+                    {% if forloop.counter <= 3 %}
                         NEW
-                    </div>
+                    {% elif forloop.counter <= 6 %}
+                        POPULAR
+                    {% else %}
+                        PREMIUM
+                    {% endif %}
+                </div>
+
+
+                {% if user.is_authenticated %}
 
                     <a
-                        href="/wishlist/add/1/"
+                        href="{% url 'add_to_wishlist' product.id %}"
                         class="product-heart"
                         title="Add to Wishlist"
                     >
-                        <i class="fas fa-heart"></i>
+                        {% if product.id in wishlist_ids %}
+                            <i class="fas fa-heart"></i>
+                        {% else %}
+                            <i class="far fa-heart"></i>
+                        {% endif %}
                     </a>
 
-                    <img
-                        src="{% static 'images/iphone.jpg' %}"
-                        alt="iPhone 16 Pro"
-                    >
-
-                </div>
-
-                <div class="product-info">
-
-                    <h3>iPhone 16 Pro</h3>
-
-                    <p class="product-description">
-                        Latest Apple flagship smartphone.
-                    </p>
-
-                    <div class="product-price">
-                        ₹1,29,999
-                    </div>
-
-                    <div class="product-buttons">
-
-                        <a href="/product/1/">
-                            <button class="view-button">
-                                <i class="fas fa-eye"></i>
-                                View
-                            </button>
-                        </a>
-
-                        <a href="/cart/add/1/">
-                            <button class="cart-button">
-                                <i class="fas fa-cart-plus"></i>
-                                Cart
-                            </button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PRODUCT 2 -->
-
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    <div class="product-badge">
-                        POPULAR
-                    </div>
+                {% else %}
 
                     <a
-                        href="/wishlist/add/2/"
+                        href="{% url 'login' %}"
                         class="product-heart"
+                        title="Login to add wishlist"
                     >
-                        <i class="fas fa-heart"></i>
+                        <i class="far fa-heart"></i>
                     </a>
 
-                    <img
-                        src="{% static 'images/headphones.jpg' %}"
-                        alt="Sony Headphones"
-                    >
+                {% endif %}
 
-                </div>
 
-                <div class="product-info">
-
-                    <h3>Sony Headphones</h3>
-
-                    <p class="product-description">
-                        Premium noise cancelling headphones.
-                    </p>
-
-                    <div class="product-price">
-                        ₹5,999
-                    </div>
-
-                    <div class="product-buttons">
-
-                        <a href="/product/2/">
-                            <button class="view-button">
-                                <i class="fas fa-eye"></i>
-                                View
-                            </button>
-                        </a>
-
-                        <a href="/cart/add/2/">
-                            <button class="cart-button">
-                                <i class="fas fa-cart-plus"></i>
-                                Cart
-                            </button>
-                        </a>
-
-                    </div>
-
-                </div>
+                <img
+                    src="{{ product.display_image }}"
+                    alt="{{ product.name }}"
+                    loading="lazy"
+                    onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=900';"
+                >
 
             </div>
 
 
-            <!-- PRODUCT 3 -->
+            <div class="product-info">
 
-            <div class="product-card">
+                <h3>
+                    {{ product.name }}
+                </h3>
 
-                <div class="product-image">
+                <p class="product-description">
 
-                    <div class="product-badge">
-                        TRENDING
-                    </div>
+                    {% if product.description %}
+                        {{ product.description|truncatechars:75 }}
+                    {% else %}
+                        Premium quality product with stylish design and excellent performance.
+                    {% endif %}
 
-                    <a
-                        href="/wishlist/add/3/"
-                        class="product-heart"
-                    >
-                        <i class="fas fa-heart"></i>
-                    </a>
+                </p>
 
-                    <img
-                        src="{% static 'images/nike-shoes.jpg' %}"
-                        alt="Nike Air Max"
-                    >
-
+                <div class="product-price">
+                    ₹{{ product.price }}
                 </div>
 
-                <div class="product-info">
 
-                    <h3>Nike Air Max</h3>
+                <div class="product-buttons">
 
-                    <p class="product-description">
-                        Comfortable and stylish running shoes.
-                    </p>
+                    <!-- IMPORTANT: Django URL -->
+                    <a href="{% url 'product_detail' product.id %}">
 
-                    <div class="product-price">
-                        ₹3,999
-                    </div>
+                        <button
+                            type="button"
+                            class="view-button"
+                        >
+                            <i class="fas fa-eye"></i>
+                            View
+                        </button>
 
-                    <div class="product-buttons">
+                    </a>
 
-                        <a href="/product/3/">
-                            <button class="view-button">
-                                <i class="fas fa-eye"></i>
-                                View
-                            </button>
-                        </a>
 
-                        <a href="/cart/add/3/">
-                            <button class="cart-button">
-                                <i class="fas fa-cart-plus"></i>
-                                Cart
-                            </button>
-                        </a>
+                    <a href="/cart/add/{{ product.id }}/">
 
-                    </div>
+                        <button
+                            type="button"
+                            class="cart-button"
+                        >
+                            <i class="fas fa-cart-plus"></i>
+                            Cart
+                        </button>
+
+                    </a>
 
                 </div>
 
             </div>
-
-
-            <!-- PRODUCT 4 -->
-
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    <div class="product-badge">
-                        SALE
-                    </div>
-
-                    <a
-                        href="/wishlist/add/4/"
-                        class="product-heart"
-                    >
-                        <i class="fas fa-heart"></i>
-                    </a>
-
-                    <img
-                        src="{% static 'images/smart-watch.jpg' %}"
-                        alt="Smart Watch"
-                    >
-
-                </div>
-
-                <div class="product-info">
-
-                    <h3>Smart Watch</h3>
-
-                    <p class="product-description">
-                        Track fitness and notifications.
-                    </p>
-
-                    <div class="product-price">
-                        ₹2,499
-                    </div>
-
-                    <div class="product-buttons">
-
-                        <a href="/product/4/">
-                            <button class="view-button">
-                                <i class="fas fa-eye"></i>
-                                View
-                            </button>
-                        </a>
-
-                        <a href="/cart/add/4/">
-                            <button class="cart-button">
-                                <i class="fas fa-cart-plus"></i>
-                                Cart
-                            </button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PRODUCT 5 -->
-
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    <div class="product-badge">
-                        PREMIUM
-                    </div>
-
-                    <a
-                        href="/wishlist/add/5/"
-                        class="product-heart"
-                    >
-                        <i class="fas fa-heart"></i>
-                    </a>
-
-                    <img
-                        src="{% static 'images/laptop.jpg' %}"
-                        alt="Laptop"
-                    >
-
-                </div>
-
-                <div class="product-info">
-
-                    <h3>Premium Laptop</h3>
-
-                    <p class="product-description">
-                        High performance laptop for work and study.
-                    </p>
-
-                    <div class="product-price">
-                        ₹65,999
-                    </div>
-
-                    <div class="product-buttons">
-
-                        <a href="/product/5/">
-                            <button class="view-button">
-                                <i class="fas fa-eye"></i>
-                                View
-                            </button>
-                        </a>
-
-                        <a href="/cart/add/5/">
-                            <button class="cart-button">
-                                <i class="fas fa-cart-plus"></i>
-                                Cart
-                            </button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PRODUCT 6 -->
-
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    <div class="product-badge">
-                        GAMING
-                    </div>
-
-                    <a
-                        href="/wishlist/add/6/"
-                        class="product-heart"
-                    >
-                        <i class="fas fa-heart"></i>
-                    </a>
-
-                    <img
-                        src="{% static 'images/gaming-mouse.jpg' %}"
-                        alt="Gaming Mouse"
-                    >
-
-                </div>
-
-                <div class="product-info">
-
-                    <h3>Gaming Mouse</h3>
-
-                    <p class="product-description">
-                        Precision RGB gaming mouse.
-                    </p>
-
-                    <div class="product-price">
-                        ₹1,499
-                    </div>
-
-                    <div class="product-buttons">
-
-                        <a href="/product/6/">
-                            <button class="view-button">
-                                <i class="fas fa-eye"></i>
-                                View
-                            </button>
-                        </a>
-
-                        <a href="/cart/add/6/">
-                            <button class="cart-button">
-                                <i class="fas fa-cart-plus"></i>
-                                Cart
-                            </button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PRODUCT 7 -->
-
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    <div class="product-badge">
-                        NEW
-                    </div>
-
-                    <a
-                        href="/wishlist/add/7/"
-                        class="product-heart"
-                    >
-                        <i class="fas fa-heart"></i>
-                    </a>
-
-                    <img
-                        src="{% static 'images/samsung.jpg' %}"
-                        alt="Samsung Galaxy"
-                    >
-
-                </div>
-
-                <div class="product-info">
-
-                    <h3>Samsung Galaxy S25</h3>
-
-                    <p class="product-description">
-                        Powerful smartphone with premium design.
-                    </p>
-
-                    <div class="product-price">
-                        ₹79,999
-                    </div>
-
-                    <div class="product-buttons">
-
-                        <a href="/product/7/">
-                            <button class="view-button">
-                                <i class="fas fa-eye"></i>
-                                View
-                            </button>
-                        </a>
-
-                        <a href="/cart/add/7/">
-                            <button class="cart-button">
-                                <i class="fas fa-cart-plus"></i>
-                                Cart
-                            </button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PRODUCT 8 -->
-
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    <div class="product-badge">
-                        PRO
-                    </div>
-
-                    <a
-                        href="/wishlist/add/8/"
-                        class="product-heart"
-                    >
-                        <i class="fas fa-heart"></i>
-                    </a>
-
-                    <img
-                        src="{% static 'images/camera.jpg' %}"
-                        alt="Camera"
-                    >
-
-                </div>
-
-                <div class="product-info">
-
-                    <h3>Canon Camera</h3>
-
-                    <p class="product-description">
-                        Professional camera for stunning photography.
-                    </p>
-
-                    <div class="product-price">
-                        ₹54,999
-                    </div>
-
-                    <div class="product-buttons">
-
-                        <a href="/product/8/">
-                            <button class="view-button">
-                                <i class="fas fa-eye"></i>
-                                View
-                            </button>
-                        </a>
-
-                        <a href="/cart/add/8/">
-                            <button class="cart-button">
-                                <i class="fas fa-cart-plus"></i>
-                                Cart
-                            </button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PRODUCT 9 -->
-
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    <div class="product-badge">
-                        STYLE
-                    </div>
-
-                    <a
-                        href="/wishlist/add/9/"
-                        class="product-heart"
-                    >
-                        <i class="fas fa-heart"></i>
-                    </a>
-
-                    <img
-                        src="{% static 'images/backpack.jpg' %}"
-                        alt="Backpack"
-                    >
-
-                </div>
-
-                <div class="product-info">
-
-                    <h3>Leather Backpack</h3>
-
-                    <p class="product-description">
-                        Stylish and durable everyday backpack.
-                    </p>
-
-                    <div class="product-price">
-                        ₹2,999
-                    </div>
-
-                    <div class="product-buttons">
-
-                        <a href="/product/9/">
-                            <button class="view-button">
-                                <i class="fas fa-eye"></i>
-                                View
-                            </button>
-                        </a>
-
-                        <a href="/cart/add/9/">
-                            <button class="cart-button">
-                                <i class="fas fa-cart-plus"></i>
-                                Cart
-                            </button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PRODUCT 10 -->
-
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    <div class="product-badge">
-                        TRENDING
-                    </div>
-
-                    <a
-                        href="/wishlist/add/10/"
-                        class="product-heart"
-                    >
-                        <i class="fas fa-heart"></i>
-                    </a>
-
-                    <img
-                        src="{% static 'images/sunglasses.jpg' %}"
-                        alt="Sunglasses"
-                    >
-
-                </div>
-
-                <div class="product-info">
-
-                    <h3>Premium Sunglasses</h3>
-
-                    <p class="product-description">
-                        Stylish sunglasses with premium finish.
-                    </p>
-
-                    <div class="product-price">
-                        ₹1,999
-                    </div>
-
-                    <div class="product-buttons">
-
-                        <a href="/product/10/">
-                            <button class="view-button">
-                                <i class="fas fa-eye"></i>
-                                View
-                            </button>
-                        </a>
-
-                        <a href="/cart/add/10/">
-                            <button class="cart-button">
-                                <i class="fas fa-cart-plus"></i>
-                                Cart
-                            </button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PRODUCT 11 -->
-
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    <div class="product-badge">
-                        GAMING
-                    </div>
-
-                    <a
-                        href="/wishlist/add/11/"
-                        class="product-heart"
-                    >
-                        <i class="fas fa-heart"></i>
-                    </a>
-
-                    <img
-                        src="{% static 'images/keyboard.jpg' %}"
-                        alt="Mechanical Keyboard"
-                    >
-
-                </div>
-
-                <div class="product-info">
-
-                    <h3>Mechanical Keyboard</h3>
-
-                    <p class="product-description">
-                        Premium mechanical keyboard for gaming.
-                    </p>
-
-                    <div class="product-price">
-                        ₹3,499
-                    </div>
-
-                    <div class="product-buttons">
-
-                        <a href="/product/11/">
-                            <button class="view-button">
-                                <i class="fas fa-eye"></i>
-                                View
-                            </button>
-                        </a>
-
-                        <a href="/cart/add/11/">
-                            <button class="cart-button">
-                                <i class="fas fa-cart-plus"></i>
-                                Cart
-                            </button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PRODUCT 12 -->
-
-            <div class="product-card">
-
-                <div class="product-image">
-
-                    <div class="product-badge">
-                        PREMIUM
-                    </div>
-
-                    <a
-                        href="/wishlist/add/12/"
-                        class="product-heart"
-                    >
-                        <i class="fas fa-heart"></i>
-                    </a>
-
-                    <img
-                        src="{% static 'images/perfume.jpg' %}"
-                        alt="Premium Perfume"
-                    >
-
-                </div>
-
-                <div class="product-info">
-
-                    <h3>Premium Perfume</h3>
-
-                    <p class="product-description">
-                        Elegant fragrance for a premium experience.
-                    </p>
-
-                    <div class="product-price">
-                        ₹2,499
-                    </div>
-
-                    <div class="product-buttons">
-
-                        <a href="/product/12/">
-                            <button class="view-button">
-                                <i class="fas fa-eye"></i>
-                                View
-                            </button>
-                        </a>
-
-                        <a href="/cart/add/12/">
-                            <button class="cart-button">
-                                <i class="fas fa-cart-plus"></i>
-                                Cart
-                            </button>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
 
         </div>
 
-    </section>
+        {% empty %}
 
-</div>
+        <div style="
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 70px 20px;
+        ">
+
+            <i
+                class="fas fa-box-open"
+                style="
+                    font-size: 55px;
+                    color: #9b59b6;
+                    margin-bottom: 20px;
+                "
+            ></i>
+
+            <h3>No Products Available</h3>
+
+            <p style="color:#777;">
+                Products will appear here once they are added.
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
 
 {% endblock %}
