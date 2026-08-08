@@ -6,11 +6,20 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
 
+    # Store
     path("", include("store.urls")),
+
+    # Accounts
     path("", include("accounts.urls")),
+
+    # Cart
     path("cart/", include("cart.urls")),
+
+    # Orders
+    path("orders/", include("orders.urls")),
 ]
 
+# Media files
 if settings.DEBUG:
     urlpatterns += static(
         settings.MEDIA_URL,
