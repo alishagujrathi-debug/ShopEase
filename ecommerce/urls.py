@@ -14,9 +14,6 @@ urlpatterns = [
 
     # Cart
     path("cart/", include("cart.urls")),
-
-    # Orders
-    path("orders/", include("orders.urls")),
 ]
 
 # Media files
