@@ -1,14 +1,8 @@
 from django.urls import path
 from . import views
 
-
 urlpatterns = [
-
-    path(
-        "",
-        views.home,
-        name="home"
-    ),
+    path("", views.home, name="home"),
 
     path(
         "product/<int:product_id>/",
@@ -28,4 +22,9 @@ urlpatterns = [
         name="add_to_wishlist"
     ),
 
+    path(
+        "wishlist/remove/<int:wishlist_id>/",
+        views.remove_from_wishlist,
+        name="remove_from_wishlist"
+    ),
 ]
